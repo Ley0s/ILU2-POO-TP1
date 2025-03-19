@@ -17,6 +17,7 @@ public class Scenario {
 		Gaulois asterix = new Gaulois("Astérix", 8);
 		Gaulois assurancetourix = new Gaulois("Assurancetourix", 2);
 		Gaulois bonemine = new Gaulois("Bonemine", 7);
+		Etal etal = new Etal();
 		
 		village.ajouterHabitant(bonemine);
 		village.ajouterHabitant(assurancetourix);
@@ -27,27 +28,29 @@ public class Scenario {
 		village.afficherVillageois();
 
 		System.out.println(village.rechercherVendeursProduit("fleurs"));
-		System.out.println("\n");
 		System.out.println(village.installerVendeur(bonemine, "fleurs", 20));
-		System.out.println("\n");
 		System.out.println(village.rechercherVendeursProduit("fleurs"));
-		System.out.println("\n");
 		System.out.println(village.installerVendeur(assurancetourix, "lyres", 5));
-		System.out.println("\n");
 		System.out.println(village.installerVendeur(obelix, "menhirs", 2));
-		System.out.println("\n");
 		System.out.println(village.installerVendeur(druide, "fleurs", 10));
-		System.out.println("\n");
 
 		System.out.println(village.rechercherVendeursProduit("fleurs"));
-		System.out.println("\n");
 		Etal etalFleur = village.rechercherEtal(bonemine);
 		System.out.println(etalFleur.acheterProduit(10, abraracourcix));
-		System.out.println(etalFleur.acheterProduit(15, obelix));
-		System.out.println(etalFleur.acheterProduit(15, assurancetourix));
+		try {
+			System.out.println(etalFleur.acheterProduit(0, obelix));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		System.out.println("\n");
+		System.out.println(etalFleur.acheterProduit(15, assurancetourix));
+		try {
+			System.out.println(etal.acheterProduit(15, assurancetourix));
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		}
 		System.out.println(village.partirVendeur(bonemine));
-//		System.out.println(village.afficherMarche());
+		System.out.println(village.afficherMarche());
 	}
 
 }
